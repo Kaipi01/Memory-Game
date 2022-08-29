@@ -1,159 +1,189 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #171717;
-    color: #fff;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-color: #171717;
+  color: #fff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .header {
-    padding-top: 30px;
-    text-align: center;
+  padding-top: 30px;
+  text-align: center;
 }
 
 .aside {
-    width: 100vw;
-    padding: 0 20px 40px 20px;
-    margin-top: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.tipContainer, time {
-    width: 160px;
+  width: 100vw;
+  padding: 0 20px 40px 20px;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .tip {
-    width: 30px;
-    height: 30px;
-    background-color: limegreen;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: limegreen;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-radius: 5px;
 }
 
 .tip.disable {
-    background-color: transparent;
-    border: none;
-    cursor: default;
-    pointer-events: none;
+  background-color: transparent;
+  border: none;
+  cursor: default;
+  pointer-events: none;
 }
 
 .tip.disable:hover {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .tip:hover {
-    background-color: lime;
+  background-color: lime;
 }
 
 .time {
-    font-size: 20px;
-    color: limegreen;
+  font-size: 20px;
+  color: limegreen;
+}
+
+.soundBtn {
+  font-size: 35px;
+  cursor: pointer;
+  color: lime;
+  border: none;
+  background-color: transparent;
+}
+
+.trials {
+  font-weight: bold;
+  font-size: 23px;
+  color: limegreen;
 }
 
 h1 {
-    color:rgb(0, 141, 0);
-    font-size: 55px; 
-    text-shadow: 2px 2px 0 lime, 2px -2px 0 lime, -2px 2px 0 lime, -2px -2px 0 lime, 2px 0px 0 lime, 0px 2px 0 lime, -2px 0px 0 lime, 0px -2px 0 lime;
+  color: rgb(0, 141, 0);
+  font-size: 55px;
+  text-shadow: 2px 2px 0 lime, 2px -2px 0 lime, -2px 2px 0 lime,
+    -2px -2px 0 lime, 2px 0px 0 lime, 0px 2px 0 lime, -2px 0px 0 lime,
+    0px -2px 0 lime;
 }
 
 .main {
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
-    width: 885px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
+  width: 885px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .card {
-    width: 75px;
-    height: 75px;
-    border-radius: 5px;
-    border: none;
+  width: 75px;
+  height: 75px;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.delete {
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+  cursor: default;
+  box-shadow: none;
+  border: none;
+  pointer-events: none;
+}
+
+.delete:hover {
+  background-color: transparent;
 }
 
 .hide {
-    background-color: #3a3a3a;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
+  background-color: #3a3a3a;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .hide:hover {
-    background-color: #4e4e4e;
+  background-color: #4e4e4e;
+}
+
+@media only screen and (min-width: 950px) {
+  body {
+    gap: 30px;
+  }
 }
 
 @media only screen and (max-width: 950px) {
+  .header {
+    padding: 20px;
+  }
 
-    .header {
-        padding: 20px;
-    }
+  h1 {
+    font-size: 45px;
+  }
 
-    h1 {
-        font-size: 45px; 
-    }
+  .container {
+    width: 690px;
+    gap: 10px;
+  }
 
-    .container {
-        width: 690px;
-        gap: 10px;
-    }
-    
-    .card {
-        width: 60px;
-        height: 60px;
-    }
+  .card {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 @media only screen and (max-width: 740px) {
-    .container {
-        width: 590px;
-    }
-    
-    .card {
-        width: 50px;
-        height: 50px;
-    }
+  .container {
+    width: 590px;
+  }
 
-    .aside {
-        padding: 0 10px 20px 10px;
-    }
+  .card {
+    width: 50px;
+    height: 50px;
+  }
+
+  .aside {
+    padding: 0 10px 20px 10px;
+  }
 }
 
 @media only screen and (max-width: 630px) {
+  .header {
+    padding: 15px;
+  }
 
-    .header {
-        padding: 15px;
-    }
+  h1 {
+    font-size: 35px;
+  }
 
-    h1 {
-        font-size: 35px; 
-    }
+  .container {
+    width: 340px;
+  }
 
-    .container {
-        width: 340px;
-    }
-    
-    .card {
-        width: 50px;
-        height: 50px;
-    }
-
+  .card {
+    width: 50px;
+    height: 50px;
+  }
 }
