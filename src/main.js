@@ -1,4 +1,8 @@
 if (window.location.pathname === "/src/index.html") {
+  localStorage.removeItem("userName");
+  localStorage.removeItem("time");
+  localStorage.removeItem("seconds");
+  localStorage.removeItem("trialsNumber");
   const startBtn = document.querySelector(".start");
   const userNameInput = document.querySelector("#userName");
   userNameInput.addEventListener("input", () => {
@@ -120,7 +124,7 @@ function startGame() {
       if (btn.classList.contains("disable")) return;
       if (soundPermission) tipSound.cloneNode().play();
       showAllCardsColors(3000);
-      //e.target.classList.add("disable");
+      e.target.classList.add("disable");
       e.target.setAttribute("tabindex", "-1");
     });
   });
@@ -132,11 +136,13 @@ function startGame() {
         showCardColor(card, i);
         previousCard = card;
         previousCardColor = card.style.backgroundColor;
+        previousCard.setAttribute("data-active", "true");
         trials++;
         break;
       case 1:
         showCardColor(card, i);
         nextCard = card;
+        nextCard.setAttribute("data-active", "true");
         if (nextCard === previousCard) return;
         nextCardColor = card.style.backgroundColor;
         if (previousCardColor === nextCardColor) {
@@ -171,7 +177,10 @@ function startGame() {
       cards.forEach((card) => {
         card.setAttribute("block", "block");
       });
+
       setTimeout(() => {
+        previousCard.removeAttribute("data-active");
+        nextCard.removeAttribute("data-active");
         previousCard.style.backgroundColor = "";
         nextCard.style.backgroundColor = "";
         previousCard.classList.add(operation);
@@ -203,7 +212,10 @@ function startGame() {
 
     setTimeout(() => {
       cards.forEach((card) => {
-        if (!card.classList.contains("delete")) {
+        if (
+          !card.classList.contains("delete") &&
+          !card.hasAttribute("data-active")
+        ) {
           card.classList.add("hide");
           card.style.backgroundColor = "";
           card.removeAttribute("block", "block");
@@ -255,7 +267,12 @@ function showResults() {
   let time = localStorage.getItem("time");
   let seconds = localStorage.getItem("seconds");
   let trialsNumber = localStorage.getItem("trialsNumber");
-  const score = 999 - trialsNumber * 10 - Math.floor(seconds / 10);
+  let score;
+
+  if (trialsNumber === 0 || !trialsNumber) {
+    score = 0;
+  } else score = 999 - trialsNumber * 10 - Math.floor(seconds / 10);
+
   let userNameRecord = localStorage.getItem("userNameRecord");
   let timeRecord = localStorage.getItem("timeRecord");
   let secondsRecord = localStorage.getItem("secondsRecord");
@@ -287,8 +304,9 @@ function showResults() {
   document.querySelector(".trialsResults").textContent = trialsNumber;
   document.querySelector(".scoreResults").textContent = score;
 
-  document.querySelector(".userNameRecord").textContent = userName || "User";
-  document.querySelector(".timeRecord").textContent = time;
-  document.querySelector(".trialsRecord").textContent = trialsNumber;
-  document.querySelector(".scoreRecord").textContent = score;
+  document.querySelector(".userNameRecord").textContent =
+    userNameRecord || "User";
+  document.querySelector(".timeRecord").textContent = timeRecord;
+  document.querySelector(".trialsRecord").textContent = trialsNumberRecord;
+  document.querySelector(".scoreRecord").textContent = scoreRecord;
 }
