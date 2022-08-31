@@ -1,19 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Game</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./fontello-0ab8ab8f/css/fontello.css" />
     <script defer src="main.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <h1>Memory Game</h1>
-      </header>
-    <button class="startBtn">
-        <a href="./pages/game.html">START</a>
-    </button>
-</body>
+      <h1>Memory Game</h1>
+    </header>
+    <fieldset>
+      <label for="userName">Enter your name:</label>
+      <input
+        type="text"
+        name="userName"
+        id="userName"
+        placeholder="default: User"
+      />
+    </fieldset>
+    <div class="startContainer">
+      <h2>What's going on in this game?</h2>
+      <p>
+        The goal of the game is to remove all tiles from the board. They are
+        removed by revealing 2 tiles, if the tiles are the same color, they are
+        removed from the game, if not, they are covered back, so you have to
+        remember where they were before.
+      </p>
+      <div class="cardTestContainer">
+        <div class="cardTest"></div>
+        <div class="cardTest"></div>
+        <div class="cardTest"></div>
+        <div class="cardTest"></div>
+        <div class="cardTest"></div>
+        <div class="cardTest"></div>
+      </div>
+      <p>
+        At the beginning of the game, all colors tiles are shown for a moment.
+      </p>
+      <p>
+        During the game, you can use the help of small buttons at the bottom
+        that reveal all tiles for a moment.
+      </p>
+      <div class="tipContainer">
+        <div class="tip"></div>
+        <div class="tip"></div>
+        <div class="tip"></div>
+      </div>
+      <p>
+        At the end of the game, when all tiles are removed, points are counted.
+        The number of tries and the time of the game are important for scoring.
+      </p>
+      <div class="results__container">
+        <p>Name: <span>User</span></p>
+        <p>Time: <span>00:05:23</span></p>
+        <p>Trials: <span>87</span></p>
+        <p>Score: <span>109</span> points</p>
+      </div>
+      <p>
+        Formula for the number of points:
+        <span class="pattern">999 - (trials * 10 + timeInSeconds / 10)</span>
+      </p>
+      <div class="audioEffectMessage">
+        <p>
+          <b>Important!</b> There are sound effects in the game, if you want to
+          turn them off, you can do it by clicking on the speaker icon
+        </p>
+        <div class="audioEffectMessage">
+          <div class="soundBtn">
+            <i class="icon-volume-up"></i>
+          </div>
+          <span>&#8594;</span>
+          <div class="soundBtn">
+            <i class="icon-volume-off"></i>
+          </div>
+        </div>
+      </div>
+      <p>Have fun!</p>
+    </div>
+    <button class="start startBtn">START</button>
+  </body>
 </html>
