@@ -5,14 +5,14 @@
 }
 
 body {
-  background-color: #171717;
+  background-color: #151515;
   color: #fff;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .header {
@@ -20,8 +20,39 @@ body {
   text-align: center;
 }
 
+label {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+fieldset {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px 0;
+  border: none;
+}
+
+#userName {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 3px solid rgb(0, 141, 0);
+  outline: none;
+  font-size: 21px;
+  color: lime;
+  text-align: center;
+}
+
+#userName:focus,
+#userName:active {
+  border-color: lime;
+}
+
 .aside {
   width: 100vw;
+  max-width: 1100px;
   padding: 0 20px 40px 20px;
   margin-top: 15px;
   display: flex;
@@ -29,11 +60,19 @@ body {
   justify-content: space-around;
 }
 
+.tipContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
 .tip {
   width: 30px;
   height: 30px;
   background-color: limegreen;
   cursor: pointer;
+  border: 2px solid #000;
   transition: all 0.2s ease-in-out;
   border-radius: 5px;
 }
@@ -42,7 +81,7 @@ body {
   background-color: transparent;
   border: none;
   cursor: default;
-  pointer-events: none;
+  outline: none;
 }
 
 .tip.disable:hover {
@@ -88,7 +127,17 @@ h1 {
   align-items: center;
 }
 
-.container {
+.startContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  text-align: center;
+  max-width: 1100px;
+  font-size: 18px;
+  padding: 0 20px;
+}
+
+.gameContainer {
   width: 885px;
   display: flex;
   align-items: center;
@@ -97,12 +146,78 @@ h1 {
   gap: 15px;
 }
 
-.card {
+.card,
+.cardTest {
   width: 75px;
   height: 75px;
+  border: none;
   border-radius: 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.cardTestContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cardTest {
+  background-color: #3a3a3a;
+}
+
+.cardTest:nth-child(4) {
+  animation: instruction1 5s 0s step-end infinite;
+}
+
+.cardTest:nth-child(5) {
+  animation: instruction2 5s 0s step-end infinite;
+}
+
+@keyframes instruction1 {
+  0% {
+    background-color: #3a3a3a;
+  }
+  30% {
+    background-color: #ff0000;
+  }
+  70% {
+    opacity: 0;
+  }
+}
+
+@keyframes instruction2 {
+  0% {
+    background-color: #3a3a3a;
+  }
+  50% {
+    background-color: #ff0000;
+  }
+  70% {
+    opacity: 0;
+  }
+}
+
+.audioEffectMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.audioEffectMessage span {
+  font-size: 30px;
+  font-weight: bold;
+  color: lime;
+}
+
+.audioEffectMessage p {
+  display: block;
+  max-width: 600px;
 }
 
 .delete {
@@ -110,7 +225,7 @@ h1 {
   transition: all 0.2s ease-in-out;
   cursor: default;
   box-shadow: none;
-  border: none;
+  outline: none;
   pointer-events: none;
 }
 
@@ -128,6 +243,88 @@ h1 {
   background-color: #4e4e4e;
 }
 
+.endGame__container {
+  text-align: center;
+  margin: 30px 0;
+  padding: 0 20px;
+}
+.winTitle {
+  position: absolute;
+  margin-bottom: 50px;
+  color: rgb(0, 141, 0);
+  font-size: 43px;
+  text-shadow: 1px 1px 0 lime, 1px -1px 0 lime, -1px 1px 0 lime,
+    -1px -1px 0 lime, 1px 0px 0 lime, 0px 1px 0 lime, -1px 0px 0 lime,
+    0px -1px 0 lime;
+}
+
+.endGame__container h3 {
+  color: rgb(0, 141, 0);
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.results__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.pattern {
+  color: limegreen;
+}
+
+.results__container p {
+  font-size: 20px;
+}
+
+.results__container p span {
+  font-weight: bold;
+  color: lime;
+}
+
+.startBtn {
+  padding: 15px 50px;
+  font-size: 24px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  background-color: rgb(0, 141, 0);
+  border: 4px solid lime;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.startBtnAnchor {
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.startBtnAnchor .startBtn {
+  margin: 0;
+}
+
+.startBtn:hover,.startBtn:focus {
+  background-color: lime;
+  border-color: rgb(0, 141, 0);
+}
+
+.goToMenu {
+  position: absolute;
+  top:  30px;
+  left: 30px;
+  font-size: 18px;
+  text-decoration: none;
+  color: rgb(0, 141, 0);
+}
+
+.goToMenu:hover, .goToMenu:focus, .goToMenu:active {
+  color: lime;
+}
+
 @media only screen and (min-width: 950px) {
   body {
     gap: 30px;
@@ -143,7 +340,7 @@ h1 {
     font-size: 45px;
   }
 
-  .container {
+  .gameContainer {
     width: 690px;
     gap: 10px;
   }
@@ -152,10 +349,14 @@ h1 {
     width: 60px;
     height: 60px;
   }
+
+  .results__container {
+    gap: 30px;
+  }
 }
 
 @media only screen and (max-width: 740px) {
-  .container {
+  .gameContainer {
     width: 590px;
   }
 
@@ -166,6 +367,10 @@ h1 {
 
   .aside {
     padding: 0 10px 20px 10px;
+  }
+
+  .winTitle {
+    font-size: 30px;
   }
 }
 
@@ -178,12 +383,24 @@ h1 {
     font-size: 35px;
   }
 
-  .container {
+  .gameContainer {
     width: 340px;
   }
 
   .card {
     width: 50px;
     height: 50px;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .goToMenu {
+    top:  1px;
+    left: 3px;
+  }
+
+  .results__container {
+    flex-direction: column;
+    gap: 20px;
   }
 }
