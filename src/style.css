@@ -288,6 +288,7 @@ h1 {
 .startBtn {
   padding: 15px 50px;
   font-size: 24px;
+  margin-top: 10px;
   margin-bottom: 40px;
   border-radius: 10px;
   background-color: rgb(0, 141, 0);
@@ -393,6 +394,31 @@ h1 {
   }
 }
 
+@media only screen and (max-height: 700px) {
+
+  .header {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 45px;
+  }
+
+  .gameContainer {
+    width: 690px;
+    gap: 10px;
+  }
+
+  .card {
+    width: 60px;
+    height: 60px;
+  }
+
+  .results__container {
+    gap: 30px;
+  }
+}
+
 @media only screen and (max-width: 460px) {
   .goToMenu {
     top:  1px;
@@ -404,3 +430,40 @@ h1 {
     gap: 20px;
   }
 }
+
+@media only screen and (max-height: 450px) {
+  .header {
+    display: none;
+  }
+
+  .gameContainer {
+    width: 590px;
+  }
+
+  .card {
+    width: 50px;
+    height: 50px;
+  }
+
+  .aside {
+    padding: 0;
+    margin-top: 5px;
+  }
+
+  .goToMenu {
+    top:  1px;
+    left: 3px;
+  }
+
+  .gameContainer {
+    margin-top: 25px;
+  }
+}
+
+@media only screen and (max-height: 360px) {
+
+  .gameContainer {
+    margin-top: 15px;
+  }
+}
+
