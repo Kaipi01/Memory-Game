@@ -1,3 +1,37 @@
+let soundPermission;
+if (window.location.pathname !== "/src/pages/endgame.html") {
+  const soundBtn = document.querySelector(".soundBtn");
+  soundPermission = localStorage.getItem("soundPermission");
+  if (soundPermission === null) {
+    soundPermission = true;
+    localStorage.setItem("soundPermission", soundPermission);
+  }
+  soundPermission === "true"
+    ? (soundPermission = true)
+    : (soundPermission = false);
+
+  if (soundPermission === true) {
+    soundBtn.innerHTML = `<i class="icon-volume-up"></i>`;
+  } else {
+    soundBtn.innerHTML = `<i class="icon-volume-off"></i>`;
+  }
+
+  soundBtn.addEventListener("click", () => {
+    const soundBtnIcon = document.querySelector(".soundBtn i");
+    localStorage.removeItem("soundPermission");
+
+    if (soundPermission === true) {
+      soundBtnIcon.classList.remove("icon-volume-up");
+      soundBtnIcon.classList.add("icon-volume-off");
+      soundPermission = false;
+    } else {
+      soundBtnIcon.classList.remove("icon-volume-off");
+      soundBtnIcon.classList.add("icon-volume-up");
+      soundPermission = true;
+    }
+    localStorage.setItem("soundPermission", soundPermission);
+  });
+}
 if (window.location.pathname === "/src/index.html") {
   localStorage.removeItem("userName");
   localStorage.removeItem("time");
@@ -80,14 +114,14 @@ function startGame() {
   const trialsSelector = document.querySelector(".trials");
   const tipBtns = document.querySelectorAll(".tip");
   const timeSelector = document.querySelector(".time");
-  const soundBtn = document.querySelector(".soundBtn");
+
   const randomArray = getRandom50NumbersArray();
 
   let previousCard;
   let previousCardColor;
   let nextCard;
   let nextCardColor;
-  let soundPermission = true;
+
   let secondsDisplay = 0;
   let minutes = 0;
   let hours = 0;
@@ -104,19 +138,6 @@ function startGame() {
     card.addEventListener("click", () => {
       play(card, index);
     });
-  });
-
-  soundBtn.addEventListener("click", () => {
-    const soundBtnIcon = document.querySelector(".soundBtn i");
-    if (soundPermission) {
-      soundPermission = false;
-      soundBtnIcon.classList.remove("icon-volume-up");
-      soundBtnIcon.classList.add("icon-volume-off");
-    } else {
-      soundPermission = true;
-      soundBtnIcon.classList.remove("icon-volume-off");
-      soundBtnIcon.classList.add("icon-volume-up");
-    }
   });
 
   tipBtns.forEach((btn) => {
@@ -160,7 +181,7 @@ function startGame() {
     }
 
     if (cardsInGame === 0) {
-      winSound.play();
+      if (soundPermission) winSound.play();
       clearInterval(interval);
       localStorage.setItem("time", time);
       localStorage.setItem("seconds", seconds);
@@ -263,7 +284,7 @@ function startGame() {
 }
 
 function showResults() {
-  let userName = localStorage.getItem("userName");
+  let userName = localStorage.getItem("userName") || "User";
   let time = localStorage.getItem("time");
   let seconds = localStorage.getItem("seconds");
   let trialsNumber = localStorage.getItem("trialsNumber");
@@ -271,7 +292,10 @@ function showResults() {
 
   if (trialsNumber === 0 || !trialsNumber) {
     score = 0;
-  } else score = 999 - trialsNumber * 10 - Math.floor(seconds / 10);
+  } else {
+    score = Math.round(9999 / trialsNumber) - Math.round(seconds / 10);
+  }
+  score < 0 ? (score = 0) : score;
 
   let userNameRecord = localStorage.getItem("userNameRecord");
   let timeRecord = localStorage.getItem("timeRecord");
@@ -299,7 +323,7 @@ function showResults() {
     localStorage.setItem("scoreRecord", score);
   }
 
-  document.querySelector(".userNameResults").textContent = userName || "User";
+  document.querySelector(".userNameResults").textContent = userName;
   document.querySelector(".timeResults").textContent = time;
   document.querySelector(".trialsResults").textContent = trialsNumber;
   document.querySelector(".scoreResults").textContent = score;
